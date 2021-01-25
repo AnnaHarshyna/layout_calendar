@@ -1,4 +1,5 @@
 $size: 100px;
+$extra-days: (29,30,31);
 
 $days-margins-left:
   "mon" 0,
@@ -70,22 +71,16 @@ body {
     }
   }
 
-  &-30 {
-    div:nth-child(31) {
-      display: none;
-    }
-  }
-  &-29 {
-    div:nth-child(30),
-    div:nth-child(31) {
-      display: none;
-    }
-  }
-  &-28 {
-    div:nth-child(29),
-    div:nth-child(30),
-    div:nth-child(31) {
-      display: none;
+  @each $day in $extra-days {
+    .calendar-#{$day} {
+      @for $i from 1 through $day {
+        & :nth-child(#{$i}) {
+          display: block;
+          &::after {
+            content: "#{$i}";
+          }
+        }
+      }
     }
   }
 }
