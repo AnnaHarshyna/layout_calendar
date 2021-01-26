@@ -71,16 +71,10 @@ body {
     }
   }
 
-  @each $day in $extra-days {
-    .calendar-#{$day} {
-      @for $i from 1 through $day {
-        & :nth-child(#{$i}) {
-          display: block;
-          &::after {
-            content: "#{$i}";
-          }
-        }
-      }
+  @for $i from 1 through 31 {
+    .calendar div:nth-child(#{$i})::after {
+      display: none;
+      content: "#{$i}";
     }
   }
 }
